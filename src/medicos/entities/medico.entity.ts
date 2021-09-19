@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Especialidade } from '../../especialidades/entities/especialidade.entity';
 
 // Define o tipo de entidade armazenado no DB
 @Entity()
@@ -6,25 +7,23 @@ export class Medico {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({length: 50})
+  @Column({length: 120})
   nome: string;
 
   @Column({length: 7})
   crm: string;
 
-  // TODO: somente números
-  @Column()
+  @Column({length: 11})
+  cep: string;
+
+  @Column({length: 20})
   tel_fixo: string;
 
-  // TODO: somente números
-  @Column()
+  @Column({length: 20})
   tel_celular: string;
-
-  // TODO: somente números e req via XHR para a API do correio
-  @Column()
-  CEP: string;
   
-  // TODO: duas especialidades
-  @Column()
-  especialidade: string;
+
+  @ManyToMany(() => Especialidade)
+  @JoinTable()
+  especialidades: Especialidade[]
 }

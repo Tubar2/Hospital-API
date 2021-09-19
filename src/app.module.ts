@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Especialidade } from './especialidades/entities/especialidade.entity';
 import { Medico } from './medicos/entities/medico.entity';
 import { MedicosModule } from './medicos/medicos.module';
 
@@ -16,7 +17,7 @@ import { MedicosModule } from './medicos/medicos.module';
       username: 'root',
       password: 'rootpass',
       database: 'medicos',
-      entities: [Medico],
+      entities: [Medico, Especialidade],
       synchronize: true,  // TODO: Shouldn't be used in production
     }),
   ],

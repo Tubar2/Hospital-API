@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, Query } from '@nestjs/common';
 import { MedicosService } from './medicos.service';
-import { CreateMedicoDto } from './dto/create-medico.dto';
-import { UpdateMedicoDto } from './dto/update-medico.dto';
+import { CreateMedicoDto } from './dtos/create-medico.dto';
+import { UpdateMedicoDto } from './dtos/update-medico.dto';
+import { FindMedicoDto } from './dtos/find-medico.dto';
 
 @Controller('medicos')
 export class MedicosController {
@@ -9,27 +10,39 @@ export class MedicosController {
 
   @Post()
   create(@Body() createMedicoDto: CreateMedicoDto) {
-    // console.log(createMedicoDto);
     return this.medicosService.create(createMedicoDto);
   }
 
   @Get()
-  findAll() {
-    return this.medicosService.findAll();
+  find(@Query() findMedicoDto: FindMedicoDto){
+    console.log(findMedicoDto);
+    return this.medicosService.find(findMedicoDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.medicosService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const medico = await this.medicosService.findOne(+id);
+    if(!medico){
+      throw new NotFoundException("Médico not found")
+    }
+    return medico;
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMedicoDto: UpdateMedicoDto) {
-    return this.medicosService.update(+id, updateMedicoDto);
+  async update(@Param('id') id: string, @Body() updateMedicoDto: UpdateMedicoDto) {
+    const medico = await this.medicosService.update(+id, updateMedicoDto)
+    if(!medico){
+      throw new NotFoundException("Médico not found")
+    }
+    return medico;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.medicosService.remove(+id);
+  async remove(@Param('id') id: string) {
+    const medico = await this.medicosService.remove(+id);
+    if(!medico){
+      throw new NotFoundException("Médico not found")
+    }
+    return medico;
   }
 }

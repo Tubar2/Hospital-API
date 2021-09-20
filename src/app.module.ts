@@ -11,16 +11,8 @@ import { EspecialidadesModule } from './especialidades/especialidades.module';
 @Module({
   imports: [
     MedicosModule,
-    TypeOrmModule.forRoot({ // TODO: Can be passed as a 'ormconfig.json' in root project folder
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'rootpass',
-      database: 'medicos',
-      entities: [Medico, Especialidade],
-      synchronize: true,  // TODO: Shouldn't be used in production
-      logging: true
+    TypeOrmModule.forRoot({
+      autoLoadEntities: true
     }),
     TypeOrmModule.forFeature([Medico, Especialidade]),
     EspecialidadesModule,

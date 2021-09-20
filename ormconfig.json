@@ -1,0 +1,16 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "rootpass",
+    "database": "medicos",
+    "entities": ["dist/**/*.entity.js"],
+    "synchronize": false,
+    "migrations": [
+      "dist/db/migrations/*.js"
+    ],
+    "cli": {
+        "migrationsDir": "src/db/migrations"
+    }
+}

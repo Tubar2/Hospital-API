@@ -1,0 +1,22 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  nest:
+    container_name: nest
+    build: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    # command:
+    #   - npm run start:dev
+    depends_on:
+      - mysql
+  
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=medicos
+      - MYSQL_ROOT_PASSWORD=rootpass
+
+

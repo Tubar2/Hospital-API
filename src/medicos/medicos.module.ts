@@ -5,13 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Medico } from './entities/medico.entity';
 import { HttpModule } from '@nestjs/axios';
 import { CorreiosService } from './correios.service';
-import { EspecialidadesService } from 'src/especialidades/especialidades.service';
 import { Especialidade } from 'src/especialidades/entities/especialidade.entity';
+import { EspecialidadesService } from 'src/especialidades/especialidades.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Medico]), TypeOrmModule.forFeature([Especialidade]), HttpModule],
+  imports: [
+    TypeOrmModule.forFeature([Medico, Especialidade]), 
+    HttpModule, 
+  ],
   controllers: [MedicosController],
   providers: [MedicosService, CorreiosService, EspecialidadesService],
-  // exports: [TypeOrmModule],
 })
 export class MedicosModule {}

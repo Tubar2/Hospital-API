@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "6f74c5f2-3565-4fc1-9b58-dd483cb49b80",
+		"name": "Hospital-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Medico-API",
+			"item": [
+				{
+					"name": "Get_Medico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/medicos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medicos"
+							],
+							"query": [
+								{
+									"key": "crm",
+									"value": "1234567",
+									"disabled": true
+								},
+								{
+									"key": "nome",
+									"value": "Ricardo",
+									"disabled": true
+								},
+								{
+									"key": "cep",
+									"value": "71515025",
+									"disabled": true
+								},
+								{
+									"key": "tel_fixo",
+									"value": "12345678",
+									"disabled": true
+								},
+								{
+									"key": "tel_celular",
+									"value": "123456789",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retorna todos os médicos que deem match nos parâmetros indicados por body"
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Medico_ByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/medicos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medicos",
+								"1"
+							]
+						},
+						"description": "Retorna um médico especificado por ':id'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Medico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Rowny\",\n    \"crm\": \"1234321\",\n    \"cep\": \"71515035\",\n    \"tel_fixo\": \"11111111\",\n    \"tel_celular\": \"111111112\",\n    \"especialidades\": [\n        {\"nome\":\"Alergologia\"},\n        {\"nome\":\"Plástica\"},\n        {\"nome\": \"Buco Maxilo\"}\n\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/medicos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medicos"
+							]
+						},
+						"description": "Cria um médico de acordo com as informações em body\n\nRetorna as informações do CEP"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Medico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/medicos/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medicos",
+								"8"
+							]
+						},
+						"description": "Remove um médico especificado por ':id' do BD"
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Medico",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"especialidades\": [\n        {\"nome\": \"Cardiologia Clínica\"}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/medicos/8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medicos",
+								"8"
+							]
+						},
+						"description": "Atualiza o médico em ':id' conforme o body"
+					},
+					"response": []
+				}
+			],
+			"description": "Controla as operações CRUD na tabela de médicos"
+		},
+		{
+			"name": "Especialidade-API",
+			"item": [
+				{
+					"name": "Get_Especialidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/especialidades",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidades"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "nadar",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Retorna todas as especialidades de acordo com o param nome\n\nCaso vazio, retorna todas as especialidades"
+					},
+					"response": []
+				},
+				{
+					"name": "Get_1_Especialidade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/especialidades/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidades",
+								"2"
+							]
+						},
+						"description": "Retorna 1 especialidade de acordo com o parâmetro ':id'"
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Especialidade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Alergologia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/especialidades",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidades"
+							]
+						},
+						"description": "Cria uma nova especialidade com nome fornecido no body\n\nRetorna um badRequest no caso de especialidade duplicada"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Especialidade",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/especialidades/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidades",
+								"1"
+							]
+						},
+						"description": "Remove a especialidade especificada por ':id'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Especialidade",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Plástica2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/especialidades/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidades",
+								"2"
+							]
+						},
+						"description": "Atualiza a especialidade dada por ':id' de acordo com as informações no body"
+					},
+					"response": []
+				}
+			],
+			"description": "Controla as operações CRUD de especialidades no DB"
+		},
+		{
+			"name": "seedDB",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				},
+				"description": "Faz o seed inicial do banco de dados"
+			},
+			"response": []
+		}
+	]
+}

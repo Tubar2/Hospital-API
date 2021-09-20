@@ -13,11 +13,16 @@ export class EspecialidadesService {
         private especialidadesRepository: Repository<Especialidade>,
     ){}
     
-    // This action creates a medico
-  create(createEspecialidadeDto: CreateEspecialidadeDto) {
+  // This action creates a medico
+  async create(createEspecialidadeDto: CreateEspecialidadeDto) {
     console.log(createEspecialidadeDto);
-    const especialidade =  this.especialidadesRepository.create(createEspecialidadeDto);
-    return this.especialidadesRepository.save(especialidade);
+    const inRepo = await this.especialidadesRepository.find(createEspecialidadeDto);
+    if(inRepo.length == 0){
+      const especialidade =  this.especialidadesRepository.create(createEspecialidadeDto);
+      return this.especialidadesRepository.save(especialidade);
+    }
+    console.log("Especialidade duplicada")
+    return null;
   }
 
   // This action updates a #${id} medico

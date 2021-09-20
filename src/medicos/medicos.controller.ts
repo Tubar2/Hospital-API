@@ -58,9 +58,9 @@ export class MedicosController {
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateMedicoDto: UpdateMedicoDto) {
     const medico = await this.medicosService.update(+id, updateMedicoDto)
-    if(!medico){
-      throw new NotFoundException("Médico not found")
-    }
+    // if(medico instanceof NotFoundException){
+    //   throw medico;
+    // }
     return medico;
   }
 

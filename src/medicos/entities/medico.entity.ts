@@ -16,16 +16,18 @@ export class Medico {
   @Column({length: 11})
   cep: string;
 
-  @Column({length: 20})
+  @Column({length: 25})
   tel_fixo: string;
 
-  @Column({length: 20})
+  @Column({length: 25})
   tel_celular: string;
   
 
-  @ManyToMany(() => Especialidade, (especialidade: Especialidade) => especialidade.medicos)
+  @ManyToMany(() => Especialidade, (especialidade: Especialidade) => especialidade.medicos, {
+    onUpdate: 'CASCADE',
+  })
   @JoinTable({
-    name: "Medico_has_Especialidades"
+    name: "Medico_has_Especialidades",
   })
   public especialidades: Especialidade[];
 }

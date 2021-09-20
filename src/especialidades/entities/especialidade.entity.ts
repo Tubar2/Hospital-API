@@ -6,7 +6,7 @@ export class Especialidade {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({length: 20})
+    @Column({length: 100})
     nome: string;
 
     

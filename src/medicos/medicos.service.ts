@@ -13,7 +13,8 @@ export class MedicosService {
   constructor(
     @InjectRepository(Medico)
     private medicosRepository: Repository<Medico>,
-    // private especialidadesRepository: Repository<Especialidade>,
+    @InjectRepository(Especialidade)
+    private especialidadesRepository: Repository<Especialidade>,
   ){}
 
   // This action creates a medico
@@ -27,11 +28,32 @@ export class MedicosService {
 
   // This action updates a #${id} medico
   async update(id: number, updateMedicoDto: UpdateMedicoDto) {
-    const medico = await this.findOne(id);
+    var newEspecialidades: Especialidade[] = []
+    var tempEspecialidades: Especialidade[] = []
+
+    const medico = await this.medicosRepository.findOne(id, {relations: ["especialidades"]});
     if(!medico){
-      return null;
+      return new NotFoundException("Médico not found");
     }
+
+    for (let i = 0; i < updateMedicoDto.especialidades.length; i++) {
+      const [found] = await this.especialidadesRepository.find(updateMedicoDto.especialidades[i]);
+      if(!found){
+        return new NotFoundException("Especialidade not found");
+      }
+      if( !medico.especialidades.find(el => el.nome === found.nome)){
+        newEspecialidades.push(found);
+      }
+      
+    }
+    if(newEspecialidades.length == 0){
+      return new NotFoundException("Nenhuma especialidade nova foi inserida");
+    }
+    tempEspecialidades = [...medico.especialidades, ...newEspecialidades];
+
     Object.assign(medico, updateMedicoDto);
+    medico.especialidades = tempEspecialidades;
+    this.medicosRepository.delete(id);
 
     return this.medicosRepository.save(medico);
   }

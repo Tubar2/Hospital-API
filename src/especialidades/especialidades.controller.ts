@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
 import { CreateEspecialidadeDto } from './dtos/create-especialidade.dto';
 import { FindEspecialidadeDto } from './dtos/find-especialidade.dto';
 import { UpdateEspecialidadeDto } from './dtos/update-especialidade.dto';
@@ -9,8 +9,12 @@ export class EspecialidadesController {
     constructor(private readonly especialidadesService: EspecialidadesService) {}
     
     @Post()
-    create(@Body() createEspecialidadeDto: CreateEspecialidadeDto) {
-        return this.especialidadesService.create(createEspecialidadeDto);
+    async create(@Body() createEspecialidadeDto: CreateEspecialidadeDto) {
+        const success = await this.especialidadesService.create(createEspecialidadeDto);
+        if(success === null) {
+            throw new BadRequestException("Especialidade já existe no BD");
+        }
+        return success;
     }
 
     @Get()

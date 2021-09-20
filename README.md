@@ -32,6 +32,8 @@ $ npm run start:prod
 docker-compose up
 ```
 
+## Seeding the database
+Go to localhost:3000/ and the especialidade will be seeded
 
 ## Support
 

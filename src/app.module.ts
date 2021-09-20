@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { Especialidade } from './especialidades/entities/especialidade.entity';
 import { Medico } from './medicos/entities/medico.entity';
 import { MedicosModule } from './medicos/medicos.module';
+import { EspecialidadesModule } from './especialidades/especialidades.module';
 
 @Module({
   imports: [
@@ -19,7 +20,10 @@ import { MedicosModule } from './medicos/medicos.module';
       database: 'medicos',
       entities: [Medico, Especialidade],
       synchronize: true,  // TODO: Shouldn't be used in production
+      logging: true
     }),
+    TypeOrmModule.forFeature([Medico, Especialidade]),
+    EspecialidadesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

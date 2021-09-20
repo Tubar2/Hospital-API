@@ -10,6 +10,6 @@ export class Especialidade {
     nome: string;
 
     
-    @ManyToMany(() => Medico)
+    @ManyToMany(() => Medico, (medico: Medico) => medico.especialidades)
     medicos: Medico[]
 }

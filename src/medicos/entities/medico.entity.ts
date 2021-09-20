@@ -23,7 +23,9 @@ export class Medico {
   tel_celular: string;
   
 
-  @ManyToMany(() => Especialidade)
-  @JoinTable()
-  especialidades: Especialidade[]
+  @ManyToMany(() => Especialidade, (especialidade: Especialidade) => especialidade.medicos)
+  @JoinTable({
+    name: "Medico_has_Especialidades"
+  })
+  public especialidades: Especialidade[];
 }

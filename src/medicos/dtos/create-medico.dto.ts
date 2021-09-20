@@ -1,5 +1,5 @@
-import {IsString, IsNumberString, ArrayMinSize} from 'class-validator'
-import { EspecialidadeDto } from '../../especialidades/dtos/create-especialidade.dto';
+import {IsString, IsNumberString, ArrayMinSize, IsInstance} from 'class-validator'
+import { FindEspecialidadeDto } from 'src/especialidades/dtos/find-especialidade.dto';
 
 
 export class CreateMedicoDto {
@@ -20,8 +20,6 @@ export class CreateMedicoDto {
     @IsNumberString()
     tel_celular: string;
 
-    // // duas especialidades
-    // especialidades: string[];
-    @ArrayMinSize(2) 
-    especialidades: EspecialidadeDto[]
+    @ArrayMinSize(2)
+    especialidades: FindEspecialidadeDto[]
 }

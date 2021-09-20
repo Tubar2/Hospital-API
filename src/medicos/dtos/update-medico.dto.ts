@@ -1,7 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateMedicoDto } from './create-medico.dto';
 import {IsString, IsNumberString, ArrayMinSize, IsOptional} from 'class-validator'
-import { EspecialidadeDto } from '../../especialidades/dtos/create-especialidade.dto';
 
 export class UpdateMedicoDto extends PartialType(CreateMedicoDto) {
     @IsString()
@@ -25,8 +24,5 @@ export class UpdateMedicoDto extends PartialType(CreateMedicoDto) {
     @IsNumberString()
     @IsOptional()
     tel_celular: string;
-
-    @IsOptional()
-    especialidades: EspecialidadeDto[];
 
 }

@@ -34,4 +34,8 @@ export class AppService {
 
     return 'Finished seeding!';
   }
+
+  hello(){
+    return "Hospital API"
+  }
 }

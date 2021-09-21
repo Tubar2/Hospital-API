@@ -6,6 +6,11 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  root() {
+    return this.appService.hello();
+  }
+
+  @Get('/seed')
   seedDB() {
     return this.appService.seedDB();
   }

@@ -15,7 +15,7 @@ $ npm install
 ```
 
 ## Running the app
-
+TypeORm is configured to run with docker, but by changing the host to 'localhost' in the app.module.ts file, you can run by the following:
 ```bash
 # development
 $ npm run start

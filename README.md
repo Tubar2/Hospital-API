@@ -33,7 +33,7 @@ docker-compose up
 ```
 
 ## Seeding the database
-Go to localhost:3000/ and the especialidade will be seeded
+If the database is not seeded on start, go to localhost:3000/seed and the especialidade table will be populated
 
 ## Support
 

@@ -32,7 +32,7 @@ export class MedicosController {
       throw new InternalServerErrorException("Error Creating medico")
     }
 
-    const cep = this.correiosService.getDados(medico.cep)
+    const cep = await this.correiosService.getDados(medico.cep)
     return  cep;
   }
 

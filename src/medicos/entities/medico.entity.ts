@@ -25,6 +25,7 @@ export class Medico {
 
   @ManyToMany(() => Especialidade, (especialidade: Especialidade) => especialidade.medicos, {
     onUpdate: 'CASCADE',
+    eager: true
   })
   @JoinTable({
     name: "Medico_has_Especialidades",

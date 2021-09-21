@@ -6,6 +6,4 @@ export class FindEspecialidadeDto extends PartialType(CreateEspecialidadeDto) {
     @IsString()
     nome: string;
 
-    
-
 }

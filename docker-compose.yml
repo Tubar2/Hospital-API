@@ -8,11 +8,12 @@ services:
       - /app/node_modules
     ports:
       - 3000:3000
-    # command:
-    #   - npm run start:dev
     depends_on:
       - mysql
-  
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+
   mysql:
     image: mysql
     environment:

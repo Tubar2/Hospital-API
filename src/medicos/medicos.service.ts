@@ -30,8 +30,8 @@ export class MedicosService {
   async update(id: number, updateMedicoDto: UpdateMedicoDto) {
     var newEspecialidades: Especialidade[] = []
     var tempEspecialidades: Especialidade[] = []
-
-    const medico = await this.medicosRepository.findOne(id, {relations: ["especialidades"]});
+    
+    const medico = await this.medicosRepository.findOne(id);
     if(!medico){
       return new NotFoundException("Médico not found");
     }

@@ -81,7 +81,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Rowny\",\n    \"crm\": \"1234321\",\n    \"cep\": \"71515035\",\n    \"tel_fixo\": \"11111111\",\n    \"tel_celular\": \"111111112\",\n    \"especialidades\": [\n        {\"nome\":\"Alergologia\"},\n        {\"nome\":\"Plástica\"},\n        {\"nome\": \"Buco Maxilo\"}\n\n    ]\n}",
+							"raw": "{\n    \"nome\": \"Rowny2\",\n    \"crm\": \"1234321\",\n    \"cep\": \"71515035\",\n    \"tel_fixo\": \"11111111\",\n    \"tel_celular\": \"111111112\",\n    \"especialidades\": [\n        {\"nome\":\"Alergologia\"},\n        {\"nome\": \"Cardiologia clínca\"},\n        {\"nome\": \"Buco Maxilo\"}\n\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"especialidades\": [\n        {\"nome\": \"Cardiologia Clínica\"}\n    ]\n}",
+							"raw": "{\n    \"especialidades\": [\n        {\n            \"id\": 1\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -284,7 +284,7 @@
 			"description": "Controla as operações CRUD de especialidades no DB"
 		},
 		{
-			"name": "seedDB",
+			"name": "Index",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -295,7 +295,7 @@
 					],
 					"port": "3000"
 				},
-				"description": "Faz o seed inicial do banco de dados"
+				"description": "Página inicial"
 			},
 			"response": []
 		}

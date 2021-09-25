@@ -34,6 +34,9 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# DBdata
+dbdata
+
 # Dump
 extra_ormconfig.js
 _test.ts
